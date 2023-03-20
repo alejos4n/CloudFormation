@@ -18,6 +18,8 @@ Resources:
         Ref: VPC
       CidrBlock: 171.0.1.0/28
       AvailabilityZone: us-east-1a
+      #Le asigno una ip publica
+      MapPublicIpOnLaunch: true
       Tags:
       - Key: stack
         Value: production
