@@ -1,0 +1,23 @@
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties: 
+      CidrBlock: 171.0.1.0/24
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      #InstanceTenancy: String
+      #Ipv4IpamPoolId: String
+      #Ipv4NetmaskLength: Integer
+      Tags: 
+        - Key: Cf
+          Value: cfalejo
+  mySubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 171.0.1.0/28
+      AvailabilityZone: "us-east-1a"
+      Tags:
+      - Key: stack
+        Value: production
