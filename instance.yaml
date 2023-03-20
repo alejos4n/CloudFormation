@@ -1,0 +1,35 @@
+Resources:
+#Creo la VPC
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties: 
+      CidrBlock: 171.0.1.0/24
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags: 
+        - Key: Cf
+          Value: cfalejo
+  #Creo la Subnet
+  mySubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+    #Referencio la VPC
+      VpcId:
+        Ref: VPC
+      CidrBlock: 171.0.1.0/28
+      AvailabilityZone: us-east-1a
+      Tags:
+      - Key: stack
+        Value: production
+  miinstancia:
+    Type: AWS::EC2::Instance
+    Properties: 
+      AvailabilityZone: us-east-1a
+      ImageId: ami-02f3f602d23f1659d
+      InstanceType: t2.micro
+      #Las keypairs ya las tenía creadas en mi cuenta
+      KeyName: llaves
+      PrivateIpAddress: 171.0.1.12
+      #Referencio la subnet
+      SubnetId:
+        Ref: mySubnet
